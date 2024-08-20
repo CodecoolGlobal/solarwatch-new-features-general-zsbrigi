@@ -1,0 +1,249 @@
+.background {
+  /* background-color: #ee9617;
+  background-image: linear-gradient(360deg, #ee9617 0%, #fe5858 74%); */
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(115, 179, 253));
+  height: 100vh;
+  width: 100vw;
+}
+
+.Form {
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.containerGlass {
+  background-color: rgb(255, 255, 255, 0.5);
+  align-items: center;
+  display: flex;
+  max-width: 550px;
+  max-height: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  position: relative;
+  top: 8%;
+  left: 0%;
+  flex-direction: column;
+  border: none;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 35px 35px 35px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6.2px);
+  -webkit-backdrop-filter: blur(6.2px);
+  border: 1px solid rgba(154, 153, 153, 0.05);
+  overflow: hidden;
+}
+
+.FormImage {
+  flex: 1;
+  overflow: hidden;
+  height: 650px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.formBackground {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.loginHeader {
+  font-family: 'Times New Roman', Times, serif;
+  position: relative;
+  margin-top: 0;
+  left: 32%;
+  color: rgb(56, 3, 3);
+}
+
+.input-box {
+  position: relative;
+  left: 8%;
+  padding: 1%;
+
+}
+
+#password {
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 2%;
+  padding-right: 15%;
+  border: none;
+  background-color: rgba(107, 19, 19, 0.3);
+}
+
+#username {
+  border-radius: 10px;
+  padding: 2%;
+  padding-right: 15%;
+  border: none;
+  background-color: rgba(107, 19, 19, 0.3);
+}
+
+::placeholder {
+  color: rgb(56, 3, 3);
+  font-weight: 600;
+}
+
+.loginBtn {
+  position: relative;
+  left: 22%;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-top: 20px;
+  padding: 2%;
+  padding-left: 20%;
+  padding-right: 20%;
+  background-color: rgb(56, 3, 3);
+  color: rgb(255, 235, 205, 0.8);
+  font-weight: 700;
+}
+
+.signUpLink {
+  font-style: italic;
+  color: rgb(56, 3, 3);
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* Registration page */
+.registrationImage {
+  position: relative;
+  left: -26%;
+}
+
+.signUpForm {
+  position: absolute;
+  left: 60%;
+}
+
+.containerGlassSignUp {
+  background-color: rgb(255, 255, 255, 0.5);
+  align-items: center;
+  display: flex;
+  max-width: 900px;
+  max-height: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  position: relative;
+  top: 8%;
+  left: 0%;
+  flex-direction: column;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 35px 35px 35px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6.2px);
+  -webkit-backdrop-filter: blur(6.2px);
+  border: 1px solid rgba(154, 153, 153, 0.05);
+  overflow: hidden;
+}
+
+.welcome {
+  position: absolute;
+  top: 36%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 235, 205, 0.5);
+  border-radius: 20px;
+  padding: 1%;
+  color: rgb(56, 3, 3);
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+.welcomeLogin {
+  position: absolute;
+  width: 300px;
+  top: 44%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 235, 205, 0.5);
+  border-radius: 20px;
+  padding: 1%;
+  color: rgb(56, 3, 3);
+  font-weight: bold;
+  font-size: larger;
+}
+
+.loginOnSignUp {
+  position: absolute;
+  top: 51%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  padding: 1%;
+  color: rgb(255, 235, 205, 0.8);
+  padding-left: 10%;
+  padding-right: 10%;
+  border-radius: 20px;
+  font-weight: bolder;
+  font-size: large;
+  background-color: rgb(56, 3, 3);
+  cursor: pointer;
+}
+
+.signUpForm {
+  position: absolute;
+  top: 13%;
+  padding-top: 20%;
+  color: rgb(56, 3, 3);
+  width: 300px;
+  padding-bottom: 20%;
+}
+
+.createHeader {
+  position: absolute;
+  left: 7%;
+  top: 20%;
+  width: 300px;
+}
+
+.SignUpBtn {
+  position: absolute;
+  bottom: 0%;
+  left: 13%;
+  background-color: rgb(56, 3, 3);
+  color: rgb(255, 235, 205, 0.8);
+  padding: 2%;
+  padding-left: 20%;
+  padding-right: 20%;
+  border-radius: 20px;
+  font-weight: bolder;
+  font-size: large;
+  cursor: pointer;
+}
+
+
+#usernameRegister {
+  position: absolute;
+  left: 7%;
+  top: 50%;
+  padding: 2%;
+  padding-right: 20%;
+  border-radius: 5px;
+  background-color: rgb(255, 235, 205, 0.6);
+  border: 1px solid rgb(56, 3, 3);
+}
+
+#passwordRegister {
+  position: absolute;
+  left: 7%;
+  top: 70%;
+  padding: 2%;
+  padding-right: 20%;
+  background-color: rgb(255, 235, 205, 0.6);
+  border-radius: 5px;
+  border: 1px solid rgb(56, 3, 3);
+}

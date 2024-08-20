@@ -1,0 +1,61 @@
+.startNav {
+    position: fixed;
+    right: 100px;
+    top: 10px;
+    padding-left: 20%;
+}
+
+.freeButton {
+    background-color: rgb(56, 3, 3);
+    color: rgb(255, 235, 205, 0.8);
+    padding: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: large;
+    cursor: pointer;
+    display: flex;
+}
+
+.forFree {
+    font-weight: bolder;
+    font-size: large;
+    color: rgb(56, 3, 3);
+    display: flex;
+}
+
+.solar {
+    position: absolute;
+    font-size: 1500%;
+    left: 5%;
+    top: 0%;
+    margin-top: 0;
+    -webkit-text-fill-color: rgb(254, 254, 254, 0);
+    -webkit-text-stroke: 5px rgb(56, 3, 3);
+}
+
+.watch {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    font-size: 1500%;
+    -webkit-text-fill-color: rgb(254, 254, 254, 0);
+    -webkit-text-stroke: 5px rgb(56, 3, 3);
+}
+
+.sunsetPicture {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    width: 50%;
+}
+
+.desc {
+    position: absolute;
+    left: 7%;
+    top: 50%;
+    width: 500px;
+    font-weight: bolder;
+    font-size: x-large;
+}
