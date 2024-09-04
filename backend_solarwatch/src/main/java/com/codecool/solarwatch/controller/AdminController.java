@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -22,11 +22,6 @@ public class AdminController {
         this.userService = userService;
         this.solarWatchService = solarWatchService;
     }
-
-//    @PostMapping("/login")
-//    public ResponseEntity<?> authenticateAdmin(@RequestBody UserRequest login) {
-//        return ResponseEntity.ok(userService.LoginUser(login));
-//    }
 
     @PutMapping("/newAdmin")
     @PreAuthorize("hasRole('ADMIN')")

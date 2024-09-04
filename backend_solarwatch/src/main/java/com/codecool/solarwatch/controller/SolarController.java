@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class SolarController {
     private final SolarWatchService openSolarService;
 

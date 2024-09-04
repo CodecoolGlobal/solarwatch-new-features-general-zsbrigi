@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: solar_watch_db_container
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend_solarwatch
+      dockerfile: Dockerfile
+    container_name: solar_watch_backend_container
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/${POSTGRES_DB}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+      - CODECOOL_APP_JWTSECRET=${CODECOOL_APP_JWTSECRET}
+      - CODECOOL_APP_JWTEXPIRATIONMS=86400000
+
+  frontend: 
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: solar_watch_frontend_container
+    depends_on:
+      - backend
+    ports:
+      - "5173:3001"
+      
+volumes:
+  postgres_data:
