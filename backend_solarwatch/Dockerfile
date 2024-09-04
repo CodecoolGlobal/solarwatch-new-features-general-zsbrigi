@@ -1,12 +1,15 @@
-# Dockerfile
-FROM openjdk:21-jdk-slim
+FROM maven:3.9.6-eclipse-temurin-17-alpine AS build-phase
 
-VOLUME /tmp
+WORKDIR /app
 
-COPY target/solarWatch-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
 
-ENTRYPOINT ["java","-jar","app.jar"]
+RUN mvn clean package -DskipTests
 
+FROM eclipse-temurin:17-jre-jammy
 
+WORKDIR /app
 
-EXPOSE 8080
+COPY --from=build-phase /app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
