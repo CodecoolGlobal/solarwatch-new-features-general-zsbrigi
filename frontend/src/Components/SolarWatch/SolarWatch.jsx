@@ -20,6 +20,7 @@ const getSolarInformations = async (cityName, date) => {
 
 const getCities = async () => {
     const token = localStorage.getItem('jwtToken');
+    console.log(token)
     const res = await fetch("/api/user/cities", {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}`, },

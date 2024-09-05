@@ -1,6 +1,6 @@
 package com.codecool.solarwatch.service;
 
-import com.codecool.solarwatch.model.*;
+import com.codecool.solarwatch.model.dto.*;
 import com.codecool.solarwatch.model.entity.City;
 import com.codecool.solarwatch.model.entity.SunriseSunset;
 import com.codecool.solarwatch.repository.CityRepository;
@@ -55,18 +55,17 @@ public class SolarWatchServiceTest {
     @Test
     public void testGetAllCities() {
         Mockito.when(cityRepository.findAll()).thenReturn(List.of(city));
-        Cities cities = new Cities(List.of(city.getName()));
-        assertEquals(cities, solarWatchService.getAllCities());
+        List<CityDTO> expected = List.of(new CityDTO(city.getName()));
+        assertEquals(expected, solarWatchService.getAllCities());
     }
 
     @Test
     public void testGetAllDatesForCity() {
         Mockito.when(cityRepository.findByName("London")).thenReturn(Optional.of(city));
         Mockito.when(sunriseSunsetRepository.findAll()).thenReturn(List.of(sunriseSunset));
-
-        Dates expectedDates = new Dates(List.of(sunriseSunset.getDate()));
-        Dates actualDates = solarWatchService.getAllDatesForCity("London");
-        assertEquals(expectedDates, actualDates);
+        List<DateDTO> dates = List.of(new DateDTO(sunriseSunset.getDate()));
+        List<DateDTO> actualDates = solarWatchService.getAllDatesForCity("London");
+        assertEquals(dates, actualDates);
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.codecool.solarwatch.service;
 
-import com.codecool.solarwatch.model.*;
+import com.codecool.solarwatch.model.dto.*;
 import com.codecool.solarwatch.model.entity.City;
 import com.codecool.solarwatch.model.entity.SunriseSunset;
 import com.codecool.solarwatch.repository.CityRepository;
@@ -13,14 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class SolarWatchService {
-    private static final String API_KEY = "76dd3293ef5729a6c6d7081782711bd6";
+    private static final String API_KEY = System.getenv("API_KEY");
     private final RestTemplate restTemplate;
     private static final Logger logger = LoggerFactory.getLogger(SolarWatchService.class);
     private final CityRepository cityRepository;
@@ -33,14 +32,14 @@ public class SolarWatchService {
         this.sunriseSunsetRepository = sunriseSunsetRepository;
     }
 
-    public Cities getAllCities() {
-        List<String> cities = cityRepository.findAll().stream().map(City::getName).toList();
-        return new Cities(cities);
+    public List<CityDTO> getAllCities() {
+        List<City> cities = cityRepository.findAll();
+        return cities.stream().map(this::convertToCityDTO).toList();
     }
 
-    public Dates getAllDatesForCity(String city) {
+    public List<DateDTO> getAllDatesForCity(String city) {
         List<LocalDate> dates = sunriseSunsetRepository.findAll().stream().filter(sunriseSunset -> sunriseSunset.getCity() == getCity(city)).map(SunriseSunset::getDate).toList();
-        return new Dates(dates);
+        return dates.stream().map(this::convertToDateDTO).toList();
     }
 
     public SolarReport addNewSunsetSunriseForCity(String cityName, LocalDate date) {
@@ -63,6 +62,13 @@ public class SolarWatchService {
         City city = getCity(cityName);
         SunriseSunset sunriseSunset = getSunriseSunset(date, city);
         return new SolarReport(date, sunriseSunset.getSunset(), sunriseSunset.getSunrise(), city.getName());
+    }
+
+    private CityDTO convertToCityDTO(City city) {
+        return new CityDTO(city.getName());
+    }
+    private DateDTO convertToDateDTO(LocalDate date) {
+        return new DateDTO(date);
     }
 
     private City addNewCity(String cityName) {

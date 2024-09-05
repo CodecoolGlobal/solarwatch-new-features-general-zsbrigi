@@ -5,7 +5,7 @@ import dawn from "../../BackGrounds/dawn.jpg";
 import "../../App.css";
 
 function createUser(user) {
-    return fetch("/api/user/register", {
+    return fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json", },
         body: JSON.stringify(user),
