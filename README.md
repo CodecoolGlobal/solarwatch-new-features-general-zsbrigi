@@ -91,7 +91,9 @@ Ensure the following are installed:
         ## backend env variables
          SPRING_DATASOURCE_USERNAME=YOUR_DB_USERNAME
          SPRING_DATASOURCE_PASSWORD=YOUR_DB_PASSWORD
+         CODECOOL_APP_JWTSECRET=YOUR_JWT_SECRET_KEY
         ```
+         *JWT Secret key should be 64 characters long.*
     - Build and start the containers:
         ```bash
          docker compose up --build

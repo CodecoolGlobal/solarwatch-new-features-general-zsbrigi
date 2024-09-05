@@ -1,3 +1,4 @@
+import LoginForm from "../../Components/LoginForm/LoginForm";
 import StartPageComp from "../../Components/StartPage/StartPageComp";
 
 function StartPage() {
@@ -5,7 +6,7 @@ function StartPage() {
     return (
         <div className="wrapper">
             <div className="MainPage">
-                <StartPageComp />
+                <LoginForm />
             </div>
         </div>
     )
