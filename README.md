@@ -69,7 +69,7 @@
      $env:DATABASE_PASSWORD="YOUR_DATABASE_PASSWORD"
      $env:JWTSECRETKEY="YOUR_JWT_SECRET_KEY"
      ```
-     The JWT secret key should be 64 characters long and should only include alphanumeric characters (A-Z, a-z, 0-9). It is advisable to avoid using special characters such as `-`, `/`, `+`, and `=` to prevent potential issues with encryption and encoding.
+     *The JWT secret key should be 64 characters long and should only include alphanumeric characters (A-Z, a-z, 0-9). It is advisable to avoid using special characters such as `-`, `/`, `+`, and `=` to prevent potential issues with encryption and encoding.*
 
    - Option 2: Using Command Prompt
      ```bash
