@@ -65,7 +65,7 @@ function SolarWatch() {
         const fetchCities = async () => {
             try {
                 const data = await getCities();
-                setCities(data.cities);
+                setCities(data);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -79,7 +79,7 @@ function SolarWatch() {
         const fetchDates = async () => {
             try {
                 const data = await getDates(city);
-                setDates(data.dates);
+                setDates(data);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -110,7 +110,7 @@ function SolarWatch() {
 
 
     const filterDate = (date) => {
-        return dates && dates.some(d => new Date(d).toDateString() === date.toDateString());
+        return dates && dates.some(d => new Date(d.date).toDateString() === date.toDateString());
     }
 
 
@@ -136,9 +136,9 @@ function SolarWatch() {
                     }} className="selectCity">
                         <option value="firstOption">Please choose a city</option>
                         {cities && cities.map(city => (
-                            <option value={city}
-                                key={city}
-                            >{city}</option>
+                            <option value={city.cityName}
+                                key={city.cityName}
+                            >{city.cityName}</option>
                         ))}
                     </select>
                     <p></p>
