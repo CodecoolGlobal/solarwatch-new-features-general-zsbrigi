@@ -36,7 +36,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
-        createAdmin();
     }
 
     public void registerUser(CreateUserRequest request) {
@@ -59,17 +58,7 @@ public class UserService {
         return new JwtResponse(jwt, userDetails.getUsername(), roles);
     }
 
-    public void createAdmin() {
-        if (userRepository.findByUsername("ADMIN").isEmpty()) {
-            UserEntity userEntity = new UserEntity();
-            userEntity.setUsername("ADMIN");
-            userEntity.setPassword(passwordEncoder.encode("admin123"));
-            userEntity.setRole(Role.ROLE_ADMIN);
-            userRepository.save(userEntity);
-        }
-    }
-
-    public void addAdmin(String username) {
+    public void changeUserRoleToAdmin(String username) {
         UserEntity admin = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(format("user %s not found", username)));
         admin.setRole(Role.ROLE_ADMIN);

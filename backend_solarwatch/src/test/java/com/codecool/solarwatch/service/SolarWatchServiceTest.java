@@ -90,7 +90,7 @@ public class SolarWatchServiceTest {
     public void testDeleteSunriseSunriseByCityName() {
         Mockito.when(cityRepository.findByName("London")).thenReturn(Optional.of(city));
 
-        solarWatchService.deleteSunriseSunriseByCityName("London");
+        solarWatchService.deleteCity("London");
         Mockito.verify(cityRepository, Mockito.times(1)).delete(city);
     }
 

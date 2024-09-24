@@ -1,33 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import Header from "./Components/Header/Header";
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import LoginForm from './Components/LoginForm/LoginForm';
+import RegistrationForm from './Components/RegistrationForm/RegistrationForm';
+import MainPage from './Pages/MainPage/MainPage';
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const token = localStorage.getItem('jwtToken');
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path='/' element={token ? <MainPage /> : <LoginForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/registration" element={<RegistrationForm />} />
+        <Route path='/solar-watch' element={<MainPage />} />
+      </Routes>
     </>
   )
 }

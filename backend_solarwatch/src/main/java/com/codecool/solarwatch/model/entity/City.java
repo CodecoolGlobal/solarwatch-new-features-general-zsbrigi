@@ -9,7 +9,7 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long CityId;
+    private long cityId;
     private String name;
     private double lat;
     private double lon;
@@ -27,11 +27,11 @@ public class City {
     }
 
     public long getCityId() {
-        return CityId;
+        return cityId;
     }
 
     public void setCityId(long cityId) {
-        CityId = cityId;
+        this.cityId = cityId;
     }
 
     public String getName() {

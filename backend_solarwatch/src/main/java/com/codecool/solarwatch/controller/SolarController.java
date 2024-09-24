@@ -4,6 +4,7 @@ import com.codecool.solarwatch.model.dto.CityDTO;
 import com.codecool.solarwatch.model.dto.DateDTO;
 import com.codecool.solarwatch.model.dto.SolarReport;
 import com.codecool.solarwatch.service.SolarWatchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import java.util.List;
 public class SolarController {
     private final SolarWatchService openSolarService;
 
+    @Autowired
     public SolarController(SolarWatchService openSolarService) {
         this.openSolarService = openSolarService;
     }
