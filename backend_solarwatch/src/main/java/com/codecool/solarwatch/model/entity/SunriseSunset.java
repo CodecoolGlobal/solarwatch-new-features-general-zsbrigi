@@ -9,7 +9,7 @@ public class SunriseSunset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long SunriseSunsetId;
+    private long sunriseSunsetId;
     private String sunrise;
     private String sunset;
     private LocalDate date;
@@ -18,11 +18,11 @@ public class SunriseSunset {
     private City city;
 
     public long getSunriseSunsetId() {
-        return SunriseSunsetId;
+        return sunriseSunsetId;
     }
 
     public void setSunriseSunsetId(long sunriseSunsetId) {
-        SunriseSunsetId = sunriseSunsetId;
+        this.sunriseSunsetId = sunriseSunsetId;
     }
 
     public String getSunrise() {

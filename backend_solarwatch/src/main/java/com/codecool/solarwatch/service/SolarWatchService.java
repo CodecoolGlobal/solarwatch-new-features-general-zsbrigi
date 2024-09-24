@@ -1,5 +1,7 @@
 package com.codecool.solarwatch.service;
 
+import com.codecool.solarwatch.exception.CityNotFoundException;
+import com.codecool.solarwatch.exception.SunsetSunriseNotFoundException;
 import com.codecool.solarwatch.model.dto.*;
 import com.codecool.solarwatch.model.entity.City;
 import com.codecool.solarwatch.model.entity.SunriseSunset;
@@ -24,6 +26,8 @@ public class SolarWatchService {
     private static final Logger logger = LoggerFactory.getLogger(SolarWatchService.class);
     private final CityRepository cityRepository;
     private final SunriseSunsetRepository sunriseSunsetRepository;
+    private static final String OPEN_WEATHER_URL = "https://api.openweathermap.org/geo/1.0/direct?q=%s&limit=1&appid=%s";
+    private static final String SUNSET_SUNRISE_URL = "https://api.sunrise-sunset.org/json?lat=%.8f&lng=%.8f&date=%tF";
 
     @Autowired
     public SolarWatchService(RestTemplate restTemplate, CityRepository cityRepository, SunriseSunsetRepository sunriseSunsetRepository) {
@@ -48,7 +52,7 @@ public class SolarWatchService {
         return new SolarReport(date, sunriseSunset.getSunset(), sunriseSunset.getSunrise(), city.getName());
     }
 
-    public void deleteSunriseSunriseByCityName(String cityName) {
+    public void deleteCity(String cityName) {
         try {
             City city = getCity(cityName);
             cityRepository.delete(city);
@@ -74,7 +78,7 @@ public class SolarWatchService {
     private City addNewCity(String cityName) {
         if (getCityByName(cityName).isEmpty()) {
             City city = new City();
-            String url = String.format("https://api.openweathermap.org/geo/1.0/direct?q=%s&limit=1&appid=%s", cityName, API_KEY);
+            String url = String.format(OPEN_WEATHER_URL, cityName, API_KEY);
             ResponseEntity<CityReport[]> response = restTemplate.getForEntity(url, CityReport[].class);
             city.setName(cityName);
             city.setCountry(Objects.requireNonNull(response.getBody())[0].country());
@@ -89,16 +93,20 @@ public class SolarWatchService {
 
     private City getCity(String cityName) {
         Optional<City> city = getCityByName(cityName);
-        return city.get();
+        if (city.isPresent()) {
+            return city.get();
+        } else {
+            throw new CityNotFoundException();
+        }
     }
 
     private SunriseSunset addNewSunriseSunsetInformation(LocalDate date, City city) {
         if (getSunriseSunsetByCityName(city, date).isEmpty()) {
-        String url2 = String.format("https://api.sunrise-sunset.org/json?lat=%.8f&lng=%.8f&date=%tF", city.getLat(), city.getLon(), date);
-        ResponseEntity<SolarReportResult> response2 = restTemplate.getForEntity(url2, SolarReportResult.class);
+        String url = String.format(SUNSET_SUNRISE_URL, city.getLat(), city.getLon(), date);
+        ResponseEntity<SolarReportResult> response = restTemplate.getForEntity(url, SolarReportResult.class);
         SunriseSunset newSunriseSunset = new SunriseSunset();
-        newSunriseSunset.setSunrise(Objects.requireNonNull(response2.getBody()).results().sunrise());
-        newSunriseSunset.setSunset(response2.getBody().results().sunset());
+        newSunriseSunset.setSunrise(Objects.requireNonNull(response.getBody()).results().sunrise());
+        newSunriseSunset.setSunset(response.getBody().results().sunset());
         newSunriseSunset.setDate(date);
         newSunriseSunset.setCity(city);
         sunriseSunsetRepository.save(newSunriseSunset);
@@ -109,7 +117,11 @@ public class SolarWatchService {
 
     private SunriseSunset getSunriseSunset(LocalDate date, City city) {
         Optional<SunriseSunset> sunriseSunset = getSunriseSunsetByCityName(city, date);
-        return sunriseSunset.get();
+        if (sunriseSunset.isPresent()) {
+            return sunriseSunset.get();
+        } else {
+            throw new SunsetSunriseNotFoundException();
+        }
     }
 
     private Optional<City> getCityByName(String city) {

@@ -1,249 +1,357 @@
-.background {
-  /* background-color: #ee9617;
-  background-image: linear-gradient(360deg, #ee9617 0%, #fe5858 74%); */
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(115, 179, 253));
+body {
   height: 100vh;
-  width: 100vw;
-}
-
-.Form {
-  justify-content: center;
-  flex-direction: column;
-  padding: 30px;
-}
-
-.wrapper {
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-.containerGlass {
-  background-color: rgb(255, 255, 255, 0.5);
-  align-items: center;
-  display: flex;
-  max-width: 550px;
-  max-height: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  position: relative;
-  top: 8%;
-  left: 0%;
-  flex-direction: column;
-  border: none;
-  position: relative;
-  border-radius: 16px;
-  box-shadow: 35px 35px 35px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6.2px);
-  -webkit-backdrop-filter: blur(6.2px);
-  border: 1px solid rgba(154, 153, 153, 0.05);
-  overflow: hidden;
-}
-
-.FormImage {
-  flex: 1;
-  overflow: hidden;
-  height: 650px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.formBackground {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  background: url(assets/background.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.loginHeader {
-  font-family: 'Times New Roman', Times, serif;
+.background {
+  background: url(assets/background.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  padding: 25px 13%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.navbar a {
   position: relative;
-  margin-top: 0;
-  left: 32%;
-  color: rgb(56, 3, 3);
+  font-size: 16px;
+  color: white;
+  margin-right: 30px;
+  text-decoration: none;
 }
 
-.input-box {
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+  bottom: -5px;
+  border-radius: 5px;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.navbar a:hover:after {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.search {
+  width: 250px;
+  height: 45px;
+  margin-right: 25.6%;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.search button {
+  width: 40px;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.search input::placeholder {
+  color: white;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 550px;
+  margin-top: 2.8%;
+  background: url(assets/background.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 71%;
+  color: white;
+  background: transparent;
+  padding: 80px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.text-item h2 {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.text-item p {
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.container .login-section {
+  position: absolute;
+  top: 0;
+  right: 23%;
+  width: calc(100%-45%);
+  height: 100%;
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLogin {
+  from {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInSolar {
+  from {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.result {
+  animation: slideInSolar 0.8s ease-out;
+}
+
+.login-section .form-box.register {
+  animation: slideIn 0.8s ease-out;
+}
+
+.login-section .form-box.login {
+  animation: slideInLogin 0.8s ease-out;
+}
+
+.login-section .form-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-section .form-box h2 {
+  text-align: center;
+  font-size: 25px;
+}
+
+.form-box .input-box {
+  width: 340px;
+  height: 50px;
+  border-bottom: 2px solid white;
+  margin: 30px 0;
   position: relative;
-  left: 8%;
-  padding: 1%;
-
 }
 
-#password {
-  border-radius: 10px;
-  margin-top: 10px;
-  padding: 2%;
-  padding-right: 15%;
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
   border: none;
-  background-color: rgba(107, 19, 19, 0.3);
+  outline: none;
+  font-size: 16px;
+  padding-right: 28px;
+  color: white;
 }
 
-#username {
-  border-radius: 10px;
-  padding: 2%;
-  padding-right: 15%;
-  border: none;
-  background-color: rgba(107, 19, 19, 0.3);
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 600px;
+  pointer-events: none;
+  transition: .5s ease;
 }
 
-::placeholder {
-  color: rgb(56, 3, 3);
-  font-weight: 600;
+.input-box .icons {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  font-size: 16px;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+  top: -5px;
 }
 
 .loginBtn {
-  position: relative;
-  left: 22%;
-  border-radius: 10px;
-  border: 1px solid black;
-  margin-top: 20px;
-  padding: 2%;
-  padding-left: 20%;
-  padding-right: 20%;
-  background-color: rgb(56, 3, 3);
-  color: rgb(255, 235, 205, 0.8);
-  font-weight: 700;
+  width: 100%;
+  height: 45px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  background: #df006c;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.4);
 }
 
 .signUpLink {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 25px;
+}
+
+.signUpLink .link {
+  color: white;
+  font-weight: 600px;
+  text-decoration: none;
   font-style: italic;
-  color: rgb(56, 3, 3);
-  font-weight: 700;
-  margin-bottom: 0;
 }
 
-/* Registration page */
-.registrationImage {
-  position: relative;
-  left: -26%;
+.signUpLink .link:hover {
+  text-decoration: underline;
 }
 
-.signUpForm {
+.searching {
   position: absolute;
-  left: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  left: 0;
 }
 
-.containerGlassSignUp {
-  background-color: rgb(255, 255, 255, 0.5);
+.selectCity {
+  width: 340px;
+  height: 50px;
+  margin: 30px 0;
+  position: relative;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  border: 1.5px solid white;
+}
+
+.selectCity option {
+  background-color: rgb(223, 0, 108);
+  color: white;
+}
+
+.datePicker {
+  width: 340px;
+  height: 50px;
+  margin: 30px 0;
+  position: relative;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  border: 1.5px solid white;
+}
+
+.searchButton {
+  width: 100%;
+  height: 45px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  background: #df006c;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.4);
+}
+
+.result {
+  color: white;
+  position: absolute;
+  display: block;
+  justify-content: center;
   align-items: center;
-  display: flex;
-  max-width: 900px;
-  max-height: 90%;
+  height: 50%;
+  right: 15%;
+  max-width: fit-content;
+  margin-top: 15%;
+}
+
+
+.city {
+  position: relative;
+  max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  align-items: center;
+  margin-top: 25%;
+}
+
+.sunrise {
   position: relative;
-  top: 8%;
-  left: 0%;
-  flex-direction: column;
-  border: none;
-  border-radius: 16px;
-  box-shadow: 35px 35px 35px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6.2px);
-  -webkit-backdrop-filter: blur(6.2px);
-  border: 1px solid rgba(154, 153, 153, 0.05);
-  overflow: hidden;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.welcome {
-  position: absolute;
-  top: 36%;
-  left: 53%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(255, 235, 205, 0.5);
-  border-radius: 20px;
-  padding: 1%;
-  color: rgb(56, 3, 3);
-  font-weight: bolder;
-  font-size: x-large;
-}
-
-.welcomeLogin {
-  position: absolute;
-  width: 300px;
-  top: 44%;
-  left: 53%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(255, 235, 205, 0.5);
-  border-radius: 20px;
-  padding: 1%;
-  color: rgb(56, 3, 3);
-  font-weight: bold;
-  font-size: larger;
-}
-
-.loginOnSignUp {
-  position: absolute;
-  top: 51%;
-  left: 53%;
-  transform: translate(-50%, -50%);
-  padding: 1%;
-  color: rgb(255, 235, 205, 0.8);
-  padding-left: 10%;
-  padding-right: 10%;
-  border-radius: 20px;
-  font-weight: bolder;
-  font-size: large;
-  background-color: rgb(56, 3, 3);
-  cursor: pointer;
-}
-
-.signUpForm {
-  position: absolute;
-  top: 13%;
-  padding-top: 20%;
-  color: rgb(56, 3, 3);
-  width: 300px;
-  padding-bottom: 20%;
-}
-
-.createHeader {
-  position: absolute;
-  left: 7%;
-  top: 20%;
-  width: 300px;
-}
-
-.SignUpBtn {
-  position: absolute;
-  bottom: 0%;
-  left: 13%;
-  background-color: rgb(56, 3, 3);
-  color: rgb(255, 235, 205, 0.8);
-  padding: 2%;
-  padding-left: 20%;
-  padding-right: 20%;
-  border-radius: 20px;
-  font-weight: bolder;
-  font-size: large;
-  cursor: pointer;
-}
-
-
-#usernameRegister {
-  position: absolute;
-  left: 7%;
-  top: 50%;
-  padding: 2%;
-  padding-right: 20%;
-  border-radius: 5px;
-  background-color: rgb(255, 235, 205, 0.6);
-  border: 1px solid rgb(56, 3, 3);
-}
-
-#passwordRegister {
-  position: absolute;
-  left: 7%;
-  top: 70%;
-  padding: 2%;
-  padding-right: 20%;
-  background-color: rgb(255, 235, 205, 0.6);
-  border-radius: 5px;
-  border: 1px solid rgb(56, 3, 3);
+.sunset {
+  position: relative;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }

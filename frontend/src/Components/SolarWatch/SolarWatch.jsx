@@ -3,6 +3,7 @@ import Logout from "../LogOut/Logout";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import "./solar.css";
+import Header from "../Header/Header";
 
 const getSolarInformations = async (cityName, date) => {
     const token = localStorage.getItem('jwtToken');
@@ -124,43 +125,45 @@ function SolarWatch() {
     }
 
     return (
-        <div className="mainpageBackground">
-            <nav>
-                <Logout />
-            </nav>
-            <div className="search">
-                <form onSubmit={handleSubmit}>
-                    <select onChange={(e) => {
-                        setCityHolder(e.target.value)
-                        handleDates(e.target.value)
-                    }} className="selectCity">
-                        <option value="firstOption">Please choose a city</option>
-                        {cities && cities.map(city => (
-                            <option value={city.cityName}
-                                key={city.cityName}
-                            >{city.cityName}</option>
-                        ))}
-                    </select>
-                    <p></p>
-                    <DatePicker
-                        className="datePicker"
-                        selected={dateHolder}
-                        onChange={date => setDateHolder(date.toISOString().split('T')[0])}
-                        filterDate={filterDate}
-                        placeholderText="Select a day"
-                    />
-                    <p></p>
-                    <button type="submit" className="searchButton">Search</button>
-                </form>
+        <>
+            <Header />
+            <div className="container">
+                <div className="item">
+                    <div className="searching">
+                        {/* <h2>You can choose a city, after that you can select a past date for that city and than you can get the Sunset Sunrise information</h2> */}
+                        <form onSubmit={handleSubmit}>
+                            <select onChange={(e) => {
+                                setCityHolder(e.target.value)
+                                handleDates(e.target.value)
+                            }} className="selectCity">
+                                <option value="firstOption">Please choose a city</option>
+                                {cities && cities.map(city => (
+                                    <option value={city.cityName}
+                                        key={city.cityName}
+                                    >{city.cityName}</option>
+                                ))}
+                            </select>
+                            <p></p>
+                            <DatePicker
+                                className="datePicker"
+                                selected={dateHolder}
+                                onChange={date => setDateHolder(date.toISOString().split('T')[0])}
+                                filterDate={filterDate}
+                                placeholderText="Select a day"
+                            />
+                            <p></p>
+                            <button type="submit" className="searchButton">Search</button>
+                        </form>
+                    </div>
+                </div>
+                {isSubmitted ? (
+                    <div className="result">
+                        <h2 className="city"><i>{city} on {date}</i></h2>
+                        <h2 className="sunrise">Sunrise: {sunrise}</h2>
+                        <h2 className="sunset">Sunset: {sunset}</h2>
+                    </div>) : <p></p>}
             </div>
-            {isSubmitted ? (
-                <div className="result">
-                    <h2 className="city"><i>{city} on </i></h2>
-                    <h2 className="date"><i> {date}</i></h2>
-                    <h2 className="sunrise">Sunrise: {sunrise}</h2>
-                    <h2 className="sunset">Sunset: {sunset}</h2>
-                </div>) : <p></p>}
-        </div>
+        </>
     )
 
 }

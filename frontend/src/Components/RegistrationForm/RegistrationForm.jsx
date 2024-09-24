@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import dawn from "../../BackGrounds/dawn.jpg";
+import { FaUser } from "react-icons/fa";
+import { MdLock } from "react-icons/md";
+import Header from "../Header/Header";
 import "../../App.css";
+
 
 function createUser(user) {
     return fetch("/api/register", {
@@ -40,43 +43,53 @@ function RegistrationForm() {
             })
     }
 
+
     if (loading) {
         return <Loading />
     }
 
     return (
-        <div className="background">
-            <div className="containerGlassSignUp">
-                <div className="registrationImage">
-                    <img src={dawn} alt="Sign up background" className="formBackground"></img>
-                    <div className="welcome">Welcome Back!</div>
-                    <div className="welcomeLogin">If you already have an account, click the login button to sign in!</div>
-                    <button className="loginOnSignUp" onClick={() => navigate("/login")}>Login</button>
+        <>
+            <Header />
+            <div className="container">
+                <div className="item">
+                    <h2>Solar Watch</h2>
+                    <div className="text-item">
+                        <h2>Welcome!</h2>
+                        <p>This platform allows you to retrieve sunrise and sunset information for any location worldwide at any time. All you need to do is provide the city and date. </p>
+                    </div>
                 </div>
-                <form className="signUpForm" onSubmit={handleCreateUser}>
-                    <h1 className="createHeader">Create Account</h1>
-                    <div className="input-boxRegister">
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            required
-                            onChange={(e) => setUsername(e.target.value)}
-                            id="usernameRegister"
-                        />
+                <div className={`login-section`}>
+                    <div className="form-box register">
+                        <form onSubmit={handleCreateUser}>
+                            <h2>Create Account</h2>
+                            <div className="input-box">
+                                <span className="icon"><FaUser className="icons" /></span>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    required
+                                    onChange={(e) => setUsername(e.target.value)}
+                                ></input>
+                                <label htmlFor="username">Username</label>
+                            </div>
+                            <div className="input-box">
+                                <span className="icon"><MdLock className="icons" /></span>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    required
+                                    onChange={(e) => setPassword(e.target.value)}
+                                ></input>
+                                <label htmlFor="password">Password</label>
+                            </div>
+                            <button className="loginBtn" type="submit">Sign Up</button>
+                            <p className="signUpLink">Already have an account? <Link to={"/login"} className="link" >Login</Link></p>
+                        </form>
                     </div>
-                    <div className="input-boxRegister">
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                            id="passwordRegister"
-                        />
-                    </div>
-                    <button className="SignUpBtn" type="submit">Sign Up</button>
-                </form>
-            </div>
-        </div>
+                </div>
+            </div >
+        </>
     )
 
 }

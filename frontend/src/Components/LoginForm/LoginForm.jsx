@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import image from "../../BackGrounds/sunset.jpg";
+import { FaUser } from "react-icons/fa";
+import { MdLock } from "react-icons/md";
+import Header from "../Header/Header";
 import "../../App.css";
 
 const loginUser = async (user) => {
@@ -29,6 +31,8 @@ function LoginForm() {
     const [password, setPassword] = useState("");
 
 
+
+
     const handleLoginUser = async (user) => {
         setLoading(true);
         try {
@@ -42,7 +46,7 @@ function LoginForm() {
         }
     };
 
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         return handleLoginUser({
             username,
@@ -50,41 +54,53 @@ function LoginForm() {
         });
     };
 
+
     if (loading) {
         return <Loading />
     }
 
     return (
-        <div className="background">
-            <div className="containerGlass">
-                <div className="FormImage">
-                    <img src={image} alt="Login background" className="formBackground"></img>
+        <>
+            <Header />
+            <div className="container">
+                <div className="item">
+                    <h2>Solar Watch</h2>
+                    <div className="text-item">
+                        <h2>Welcome!</h2>
+                        <p>This platform allows you to retrieve sunrise and sunset information for any location worldwide at any time. All you need to do is provide the city and date. </p>
+                    </div>
                 </div>
-                <form className="Form" onSubmit={onSubmit}>
-                    <h1 className="loginHeader">Login</h1>
-                    <div className="input-box">
-                        <input
-                            type="text"
-                            placeholder="Username"
-                            required
-                            onChange={(e) => setUsername(e.target.value)}
-                            id="username"
-                        />
+                <div className={`login-section`}>
+                    <div className="form-box login">
+                        <form onSubmit={handleSubmit}>
+                            <h2>Sign In</h2>
+                            <div className="input-box">
+                                <span className="icon"><FaUser className="icons" /></span>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    required
+                                    onChange={(e) => setUsername(e.target.value)}
+                                ></input>
+                                <label htmlFor="username">Username</label>
+                            </div>
+                            <div className="input-box">
+                                <span className="icon"><MdLock className="icons" /></span>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    required
+                                    onChange={(e) => setPassword(e.target.value)}
+                                ></input>
+                                <label htmlFor="password">Password</label>
+                            </div>
+                            <button className="loginBtn" type="submit">Login</button>
+                            <p className="signUpLink">Do not have an account? <Link to={"/registration"} className="link">Sign up now</Link></p>
+                        </form>
                     </div>
-                    <div className="input-box">
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                            id="password"
-                        />
-                    </div>
-                    <button className="loginBtn">Login</button>
-                    <p className="signUpLink">Do not have an account? <Link to={"/registration"}>Sign up now</Link></p>
-                </form>
-            </div>
-        </div>
+                </div>
+            </div >
+        </>
     )
 
 }

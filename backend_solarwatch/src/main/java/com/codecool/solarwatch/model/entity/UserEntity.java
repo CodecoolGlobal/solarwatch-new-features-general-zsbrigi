@@ -9,6 +9,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
+    @Column(unique = true, nullable = false)
     private String username;
     private String password;
     @Enumerated(EnumType.STRING)
