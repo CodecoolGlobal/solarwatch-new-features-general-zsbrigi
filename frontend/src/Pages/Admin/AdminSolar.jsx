@@ -1,11 +1,11 @@
-import AdminSolarWatch from "../../Components/SolarWatch/AdminSolarWatch";
+import AdminWelcome from "../../Components/Admin/AdminWelcome";
 
 function AdminSolar() {
 
     return (
         <div className="wrapper">
             <div className="MainPage">
-                <AdminSolarWatch />
+                <AdminWelcome />
             </div>
         </div>
     )

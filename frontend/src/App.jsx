@@ -1,22 +1,27 @@
 
 import './App.css'
-import Header from "./Components/Header/Header";
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import LoginForm from './Components/LoginForm/LoginForm';
-import RegistrationForm from './Components/RegistrationForm/RegistrationForm';
+import { Route, Routes } from 'react-router-dom';
 import MainPage from './Pages/MainPage/MainPage';
+import AdminSolar from './Pages/Admin/AdminSolar';
+import Login from './Pages/Login/Login';
+import Registration from './Pages/Registration/Registration';
+import { ProtectedRoute } from './ProtectedRoute';
+import AdminAddNewSolar from './Components/Admin/AdminAddNewSolar';
+import HandleUsers from './Components/Admin/HandleUsers';
 
 
 function App() {
-  const token = localStorage.getItem('jwtToken');
 
   return (
     <>
       <Routes>
-        <Route path='/' element={token ? <MainPage /> : <LoginForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/registration" element={<RegistrationForm />} />
-        <Route path='/solar-watch' element={<MainPage />} />
+        <Route path='/' element={<ProtectedRoute role={"ROLE_USER"}><MainPage /></ProtectedRoute>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path='/solar-watch' element={<ProtectedRoute role={"ROLE_USER"}><MainPage /></ProtectedRoute>} />
+        <Route path='/admin-welcome' element={<ProtectedRoute role={"ROLE_ADMIN"}><AdminSolar /></ProtectedRoute>} />
+        <Route path='/admin-add-new-solar' element={<ProtectedRoute role={"ROLE_ADMIN"}><AdminAddNewSolar /></ProtectedRoute>} />
+        <Route path='/admin-handle-users' element={<ProtectedRoute role={"ROLE_ADMIN"}><HandleUsers /></ProtectedRoute>} />
       </Routes>
     </>
   )

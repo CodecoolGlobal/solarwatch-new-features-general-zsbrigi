@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (data) => {
         setUser(data);
-        console.log(data)
     };
 
     const logout = () => {

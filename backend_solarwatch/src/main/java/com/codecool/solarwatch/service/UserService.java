@@ -1,6 +1,7 @@
 package com.codecool.solarwatch.service;
 
 import com.codecool.solarwatch.exception.UsernameAlreadyExistsException;
+import com.codecool.solarwatch.model.dto.UserDTO;
 import com.codecool.solarwatch.model.entity.UserEntity;
 import com.codecool.solarwatch.model.user.CreateUserRequest;
 import com.codecool.solarwatch.model.user.JwtResponse;
@@ -18,8 +19,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.lang.String.format;
 
@@ -63,5 +66,19 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException(format("user %s not found", username)));
         admin.setRole(Role.ROLE_ADMIN);
         userRepository.save(admin);
+    }
+
+    public List<UserDTO> getAllUser() {
+        List<UserEntity> users = userRepository.findAll();
+        return users.stream().map(this::convertUserToDTO).toList();
+    }
+
+    @Transactional
+    public void deleteUser(String username) {
+        userRepository.deleteByUsername(username);
+    }
+
+    private UserDTO convertUserToDTO(UserEntity user) {
+        return new UserDTO(user.getUsername(), user.getRole());
     }
 }
