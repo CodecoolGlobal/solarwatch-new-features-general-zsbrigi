@@ -155,7 +155,7 @@ This project was developed over multiple sprints, with different features being 
 
 
 ## Technologie Stack
-- **Backend**: 
+### Backend:
 - [![spring-boot][spring-boot]][spring-boot-url]
 - [![spring-web-mvc][spring-web-mvc]][spring-web-mvc-url]
 - [![spring-web-mvc][spring-web-mvc]][spring-web-mvc-url]
@@ -163,14 +163,14 @@ This project was developed over multiple sprints, with different features being 
 - [![spring-security][spring-security]][spring-security-url]
 - [![hibernate][hibernate]][hibernate-url]
 
-- **Database**:
+### Database:
 - [![postgresql][postgresql]][postgresql-url]
 
-- **Frontend**: 
+### Frontend:
 - [![React-Vite][React-Vite]][Vite-URL]
 - [![Css][Css3]][Css-url]
 
-- **Containerization**: 
+### Containerization:
 - [![docker][docker]][docker-url]
 
 [React-Vite]: https://img.shields.io/badge/-Vite-D3D3D3?logo=Vite&logoColor=646CFF
