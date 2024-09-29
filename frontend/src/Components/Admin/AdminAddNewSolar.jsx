@@ -34,7 +34,7 @@ function AdminAddNewSolar() {
         try {
             const data = await addSolar(solar);
             if (data !== null) {
-                setMessage("You send the data to the database successfully!")
+                setMessage("The data has been successfully transmitted to the database!")
             } else {
                 setMessage("Something went wrong, try again later!");
             }
