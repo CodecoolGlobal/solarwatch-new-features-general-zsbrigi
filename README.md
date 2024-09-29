@@ -9,13 +9,14 @@
 ### Prerequisites
 
 #### To Run the Project with Docker:
-- Docker
+   - [![docker][docker]][docker-url]
 
 #### To Run Backend and Frontend Separately:
-- Java 17
-- Maven 3.9+
-- PostgreSQL
-- Node.js and npm (for the frontend)
+  - [![java][java]][java-url]
+  - [![maven][maven]][maven-url]
+  - [![postgresql][postgresql]][postgresql-url]
+  - [![nodejs][node.js]][node-url]
+  - [![npm][npm]][npm-url]
 
 ### Installation
 
@@ -26,7 +27,7 @@
    cd <foldername>
    ```
 
-2. Set environment variables in `docker-compose.yaml`:
+2. Set environment variables in `.env-sample`:
    ```bash
    # db env variables
    POSTGRES_DB=YOUR_DB_NAME
@@ -39,8 +40,12 @@
    CODECOOL_APP_JWTSECRET=YOUR_JWT_SECRET_KEY
    ```
    *The JWT secret key should be 64 characters long and should only include alphanumeric characters (A-Z, a-z, 0-9). It is advisable to avoid using special characters such as `-`, `/`, `+`, and `=` to prevent potential issues with encryption and encoding.*
+3. Rename `.env-sample` to `.env`:
+   ```
+   mv .env-sample .env
+   ```
 
-3. Build and start the containers:
+4. Build and start the containers:
    ```bash
    docker compose up --build
    ```
@@ -62,6 +67,7 @@
 
 3. Set environment variables:
    - If running locally, you must create the PostgreSQL database on your machine and set the connection details.
+   - Update application.properties (src/main/resources/application.properties) with your database credentials and security data or you can use terminal commands:
    - Option 1: Using PowerShell
      ```bash
      $env:DATABASE_URL="jdbc:postgresql://localhost:5432/solarWatch"
@@ -111,6 +117,10 @@
 - User Registration and Authentication using Spring Security and JWT tokens.
 - Includes role-based access control with user and admin roles.
 
+### Admin Page
+- User Management: Administrators can view and delete user accounts directly from the admin panel.
+- Solar Data Management: Administrators can manually add new solar data (e.g., sunrise and sunset times) for specific cities and dates.
+
 ### Frontend Integration
 - Built with React-Vite, featuring RESTful API integration and client-side routing using React Router.
 
@@ -119,17 +129,21 @@
 
 ## Usage
 
-1. **Register an Account**:
-   - Sign up to create a new account.
-     ![signUpImage](.//ReadmeImages/register.png)
-
-2. **Login**:
-   - Use your credentials to log in.
+1. **User Registration and Login**:
+   - Users can register and log in.
      ![loginImage](.//ReadmeImages/login.png)
 
-3. **Retrieve Sunrise and Sunset Data**:
+2. **Retrieve Sunrise and Sunset Data**:
    - Select a city and date to get solar data.
      ![sunriseSunsetImage](.//ReadmeImages/sunrisesunset.png)
+
+3. Administrator pages:
+   - Administrators can manage users and solar data:
+      - Delete users from the database.
+      ![handleUsers](./ReadmeImages/handleusers.png)
+      - Add new solar-watch data.
+      ![addNew](./ReadmeImages/addnew.png)
+   
 
 ## Git History
 
@@ -140,7 +154,60 @@ This project was developed over multiple sprints, with different features being 
 4. **Final Sprint**: Dockerized the project and added integration tests.
 
 
-## Technologies
-- **Backend**: Spring Boot, Spring MVC, Spring Data, JPA, Spring Security, Hibernate, PostgreSQL
-- **Frontend**: React-Vite, Vanilla CSS
-- **Containerization**: Docker
+## Technologie Stack
+- **Backend**: 
+- [![spring-boot][spring-boot]][spring-boot-url]
+- [![spring-web-mvc][spring-web-mvc]][spring-web-mvc-url]
+- [![spring-web-mvc][spring-web-mvc]][spring-web-mvc-url]
+- [![spring-data-jpa][spring-data-jpa]][spring-data-jpa-url]
+- [![spring-security][spring-security]][spring-security-url]
+- [![hibernate][hibernate]][hibernate-url]
+
+- **Database**:
+- [![postgresql][postgresql]][postgresql-url]
+
+- **Frontend**: 
+- [![React-Vite][React-Vite][Vite-URL]]
+- [![Css][Css3]][Css-url]
+
+- **Containerization**: 
+- [![docker][docker]][docker-url]
+
+[React-Vite]: https://img.shields.io/badge/-Vite-D3D3D3?logo=Vite&logoColor=646CFF
+[Vite-URL]: https://vitejs.dev/guide/
+
+[Css3]: https://img.shields.io/badge/Css-4361ee?style=for-the-badge&logo=css&logoColor=61DAFB
+[Css-url]: https://en.wikipedia.org/wiki/CSS
+
+[docker]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[docker-url]: https://docs.docker.com/engine/install/
+
+[spring-boot]: https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
+[spring-boot-url]: https://docs.spring.io/spring-boot/installing.html
+
+[spring-web-mvc]: https://img.shields.io/badge/SPRING%20WEB%20MVC-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
+[spring-web-mvc-url]: https://docs.spring.io/spring-framework/reference/web/webmvc.html
+
+[spring-data-jpa]: https://img.shields.io/badge/SPRING%20DATA%20JPA-6DB33F?style=for-the-badge&logo=Spring&logoColor=white
+[spring-data-jpa-url]: https://spring.io/projects/spring-data-jpa
+
+[spring-security]: https://img.shields.io/badge/Spring%20Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white
+[spring-security-url]: https://spring.io/projects/spring-security
+
+[hibernate]: https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white
+[hibernate-url]: https://hibernate.org/ 
+
+[postgresql]: https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white
+[postgresql-url]: https://www.postgresql.org/download/
+
+[java]: https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&labelColor=ED8B00&logo=java&color=808080[Java
+[java-url]: https://www.java.com/en/download/
+
+[maven]: https://img.shields.io/badge/Maven-4%2B-ED8B00?style=for-the-badge&labelColor=ED8B00&logo=maven&color=808080[Maven
+[maven-url]: https://maven.apache.org/
+
+[node.js]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
+[node-url]: https://nodejs.org/en
+
+[npm]: https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white
+[npm-url]: https://www.npmjs.com/
