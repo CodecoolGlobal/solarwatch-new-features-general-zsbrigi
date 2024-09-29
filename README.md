@@ -158,7 +158,6 @@ This project was developed over multiple sprints, with different features being 
 ### Backend:
 - [![spring-boot][spring-boot]][spring-boot-url]
 - [![spring-web-mvc][spring-web-mvc]][spring-web-mvc-url]
-- [![spring-web-mvc][spring-web-mvc]][spring-web-mvc-url]
 - [![spring-data-jpa][spring-data-jpa]][spring-data-jpa-url]
 - [![spring-security][spring-security]][spring-security-url]
 - [![hibernate][hibernate]][hibernate-url]
