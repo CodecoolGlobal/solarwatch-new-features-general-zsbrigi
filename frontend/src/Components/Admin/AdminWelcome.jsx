@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Logout from "../LogOut/Logout";
+import Header from "../Header/Header";
 
 
-function AdminSolarWatch() {
+function AdminWelcome() {
     const [name, setName] = useState("");
 
     const welcomeBack = async () => {
@@ -29,15 +29,14 @@ function AdminSolarWatch() {
 
     return (
         <div>
-            <nav>
-                <span>Add more solar</span>
-                <span>Delete solar</span>
-                <span>Handle users</span>
-                <Logout />
-            </nav>
-            <h1>Welcome back, {name}! </h1>
+            <Header />
+            <div className="container">
+                <div className="item">
+                    <h1 className="welcome">Welcome back, {name}! </h1>
+                </div>
+            </div>
         </div>
     )
 }
 
-export default AdminSolarWatch;
+export default AdminWelcome;

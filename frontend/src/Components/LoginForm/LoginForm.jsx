@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa";
 import { MdLock } from "react-icons/md";
 import Header from "../Header/Header";
 import "../../App.css";
+import { useAuth } from "../../AuthProvider";
 
 const loginUser = async (user) => {
     try {
@@ -17,7 +18,7 @@ const loginUser = async (user) => {
             throw new Error('Login failed!');
         }
         const data = await response.json();
-        localStorage.setItem('jwtToken', data.jwt);
+        return data;
     } catch (error) {
         console.error("Error during login: ", error);
     }
@@ -29,15 +30,19 @@ function LoginForm() {
     const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    const { login } = useAuth();
 
 
 
     const handleLoginUser = async (user) => {
         setLoading(true);
         try {
-            await loginUser(user);
-            navigate("/solar-watch");
+            const data = await loginUser(user);
+            localStorage.setItem('jwtToken', data.jwt);
+            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('userRole', data.roles[0]);
+            login({ data });
+            data.roles[0] === "ROLE_ADMIN" ? navigate("/admin-welcome") : navigate("/solar-watch");
         } catch (error) {
             console.error("Error during login: ", error);
         } finally {

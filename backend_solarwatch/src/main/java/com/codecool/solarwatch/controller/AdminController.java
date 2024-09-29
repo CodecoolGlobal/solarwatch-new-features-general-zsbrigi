@@ -2,14 +2,16 @@ package com.codecool.solarwatch.controller;
 
 import com.codecool.solarwatch.model.dto.SolarReport;
 import com.codecool.solarwatch.model.dto.SolarWatchDTO;
+import com.codecool.solarwatch.model.dto.UserDTO;
 import com.codecool.solarwatch.model.user.AddNewAdmin;
 import com.codecool.solarwatch.service.SolarWatchService;
 import com.codecool.solarwatch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -22,6 +24,11 @@ public class AdminController {
     public AdminController(UserService userService, SolarWatchService solarWatchService) {
         this.userService = userService;
         this.solarWatchService = solarWatchService;
+    }
+
+    @GetMapping("/users")
+    public List<UserDTO> getAllUser() {
+        return userService.getAllUser();
     }
 
     @PutMapping("/newAdmin")
@@ -42,9 +49,16 @@ public class AdminController {
         return solarWatchService.addNewSunsetSunriseForCity(solarWatch.city(), solarWatch.date());
     }
 
+    @DeleteMapping("/deleteUser")
+    public void deleteUser(@RequestBody String username) {
+        userService.deleteUser(username);
+    }
+
     @DeleteMapping("/deleteSolar")
     public void deleteSolarWatch(@RequestParam String city) {
         solarWatchService.deleteCity(city);
     }
+
+
 
 }
