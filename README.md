@@ -27,7 +27,7 @@
    cd <foldername>
    ```
 
-2. Set environment variables in `.env-sample`:
+2. Set environment variables in `.env.sample`:
    ```bash
    # db env variables
    POSTGRES_DB=YOUR_DB_NAME
@@ -40,9 +40,9 @@
    CODECOOL_APP_JWTSECRET=YOUR_JWT_SECRET_KEY
    ```
    *The JWT secret key should be 64 characters long and should only include alphanumeric characters (A-Z, a-z, 0-9). It is advisable to avoid using special characters such as `-`, `/`, `+`, and `=` to prevent potential issues with encryption and encoding.*
-3. Rename `.env-sample` to `.env`:
+3. Rename `.env.sample` to `.env`:
    ```
-   mv .env-sample .env
+   mv .env.sample .env
    ```
 
 4. Build and start the containers:
