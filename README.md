@@ -131,11 +131,11 @@
 
 1. **User Registration and Login**:
    - Users can register and log in.
-     ![loginImage](.//ReadmeImages/login.png)
+     ![loginImage](.//ReadmeImages/loginPage.png)
 
 2. **Retrieve Sunrise and Sunset Data**:
    - Select a city and date to get solar data.
-     ![sunriseSunsetImage](.//ReadmeImages/sunrisesunset.png)
+     ![sunriseSunsetImage](.//ReadmeImages/sunrisesunsetPage.png)
 
 3. Administrator pages:
    - Administrators can manage users and solar data:
@@ -167,7 +167,7 @@ This project was developed over multiple sprints, with different features being 
 - [![postgresql][postgresql]][postgresql-url]
 
 - **Frontend**: 
-- [![React-Vite][React-Vite][Vite-URL]]
+- [![React-Vite][React-Vite]][Vite-URL]
 - [![Css][Css3]][Css-url]
 
 - **Containerization**: 
